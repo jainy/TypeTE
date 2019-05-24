@@ -21,7 +21,7 @@ use List::MoreUtils qw(uniq);
 use feature 'fc';
 
 
-my $version = "5.1";
+my $version = "5.3";
 my $scriptname = "orientTE_extractTE.pl";
 my $changelog = "
 #   - v1.0 = 3 November 2017 
@@ -183,9 +183,17 @@ foreach $directory (@dir) {
 			my $assembledfile = "$directory.allreads.scaffolds.fasta";
 			&renameseq_filename($assembledfile,$outpath,$directory);
 		} elsif (-e "$path/Assembled_TEreads/$directory/$directory.allreadsSPAdeout/contigs.fasta" ) {
-			copy("$path/Assembled_TEreads/$directory/$directory.allreadsSPAdeout/contigs.fasta", "$path/Assembled_TEreads/$directory/$directory.allreads.contigs.fasta") or die "Copy failed contigs.fasta $directory:$!";
-			my $assembledfile = "$directory.allreads.contigs.fasta";
-			&renameseq_filename($assembledfile,$outpath,$directory);
+			system ("$miniadir/minia -in $path/Assembled_TEreads/$directory/$directory.concatenated.allreads.fasta -kmer-size 45 -abundance-min 3 -out $path/Assembled_TEreads/$directory/$directory.concatenated.allreads.fasta_k45_ma3") == 0 or warn ("minia failed to assemble \n");
+			if (-e "$path/Assembled_TEreads/$directory/$directory.concatenated.allreads.fasta_k45_ma3.contigs.fa") { 
+					
+					my $assembledfile = "$directory.concatenated.allreads.fasta_k45_ma3.contigs.fa";
+					&renameseq_filename($assembledfile,$outpath,$directory);
+				} else {
+					copy("$path/Assembled_TEreads/$directory/$directory.allreadsSPAdeout/contigs.fasta", "$path/Assembled_TEreads/$directory/$directory.allreads.contigs.fasta") or die "Copy failed contigs.fasta $directory:$!";
+					my $assembledfile = "$directory.allreads.contigs.fasta";
+					&renameseq_filename($assembledfile,$outpath,$directory);
+				} 
+			
 		} elsif (-e "$path/Assembled_TEreads/$directory/$directory.allreadsdipSPAdeout/dipspades/consensus_contigs.fasta") { 
 			copy("$path/Assembled_TEreads/$directory/$directory.allreadsdipSPAdeout/dipspades/consensus_contigs.fasta", "$path/Assembled_TEreads/$directory/$directory.allreads.consensus_contigs.fasta") or die "Copy failed consensus_contigs.fasta $directory:$!";
 			my $assembledfile = "$directory.allreads.consensus_contigs.fasta";
