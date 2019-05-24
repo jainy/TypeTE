@@ -22,7 +22,7 @@ use List::MoreUtils qw(uniq);
 use List::MoreUtils qw(firstidx);
 
 
-my $version = "14.0";
+my $version = "15.0";
 my $scriptname = "processbam_extract_GM_scores.pl";
 my $changelog = "
 #   - v1.0 = 16 Jan 2017 
@@ -86,7 +86,8 @@ my $changelog = "
 #				changed name to processbam_extract_GM_scores.pl	
 #	-15.0 = 05 April 18
 #				changing the software locations as commandline arguments for ease of integrating into the pipeline
-#				all the optional arguments are changing to mandatory options except for the mappability option		
+#				all the optional arguments are changing to mandatory options except for the mappability option
+#				Made changes how discordant reads are separated to R1 and R2 reads fixed a bug with reads getting duplicated		
 #		
 \n";
 
