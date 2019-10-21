@@ -48,9 +48,16 @@ git clone https://github.com/clemgoub/TypeTE
 cd TypeTE
 ```
 
-2. Complete the fields associated to the path of each dependent program in the files ```"parameterfile_Ref.init"``` and ```"parameterfile_NoRef.init"```
+2. Move inside the TypeTE folder and clone the "insertion-genotype" package (J. Kidd)
 
-3. And that's it!
+```sh
+cd TypeTE
+git clone https://github.com/KiddLab/insertion-genotype.git
+```
+
+3. Complete the fields associated to the path of each dependent program in the files ```"parameterfile_Ref.init"``` and ```"parameterfile_NoRef.init"```
+
+4. And that's it!
 
 - - - -
 
