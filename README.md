@@ -173,6 +173,16 @@ We are going to run the pipeline on 2 loci of 3 individuals from the 1000 Genome
 1. Download the bam and bam.bai files
 
 Within the TypeTE folder, type:
+
+```sh
+cd test_data
+./downloads.sh
+```
+
+The corresponding bam/bam.bai files will be downladed into <yourpath>/TypeTE/test_data
+   
+Alternatively, here are the individual commands:
+
 ```sh
 cd test_data
 wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/NA07056/alignment/NA07056.mapped.ILLUMINA.bwa.CEU.low_coverage.20130415.bam
@@ -182,7 +192,7 @@ wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/NA11830/alignment/NA11
 wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/NA12144/alignment/NA12144.mapped.ILLUMINA.bwa.CEU.low_coverage.20130415.bam
 wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/NA12144/alignment/NA12144.mapped.ILLUMINA.bwa.CEU.low_coverage.20130415.bam.bai
 ```
-The corresponding bam/bam.bai files will be downladed into <yourpath>/TypeTE/test_data
+
   
 2. Copy the parameterfile_NoRef.init template present in <yourpath>/TypeTE/test_data to the main folder
   
