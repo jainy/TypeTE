@@ -216,8 +216,8 @@ The new genotype should be
 |         | 1_72639020 | 10_69994906 |
 |---------|------------|-------------|
 | NA07056 | 1/1          | 0/0           |
-| NA11830 | 0/1          | .           |
-| NA12144 | 1/1          | 0/0          |
+| NA11830 | 0/1          | 1/1           |
+| NA12144 | 1/1          | 1/1         |
 
 ```diff
 - The results of this test run are not expected to reflect the true genotypes -
@@ -261,7 +261,7 @@ The new genotype should be
 |---------|------------|-------------|
 | NA07056 | 0/0          | 0/0           |
 | NA11830 | 0/1          | 0/1           |
-| NA12144 | 0/1          | 0/1           |
+| NA12144 | 0/1          | 0/0           |
 
 ```diff
 - The results of this test run are not expected to reflect the true genotypes -
