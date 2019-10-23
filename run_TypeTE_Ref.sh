@@ -8,9 +8,13 @@
 # insertions                              #
 # Author: Clement Goubert                 #
 # Date: 08/2018                           #
-# Version: 1.0                            #
+# Version: 1.2                            #
 ###########################################
+# Changelog
+# V1 - 08/2018: working version 1
+# V1.2 - 10/23/2019: makes outfolder for genotype to fix parallelization issue
 
+###########################################
 #load the user options, outdir path and dependencies paths
 source parameterfile_Ref.init # load the parameterfile as argument
 
@@ -99,6 +103,14 @@ rm -r $OUTDIR/$PROJECT/samples
 
 ### create alternatives alleles
 python2.7 insertion-genotype/create-alternative-alleles.py --allelefile $OUTDIR/$PROJECT/$PROJECT.allele --allelebase $OUTDIR/$PROJECT --bwa $BWA
+
+### create output folders
+mkdir -p $OUTDIR/$PROJECT/samples
+indfol=$(awk '{print $1}' $BAMFILE)
+for ind in $indfol
+do
+mkdir -p $OUTDIR/$PROJECT/samples/$ind
+done
 
 ### genotype per individual
 cat $BAMFILE | $PARALLEL -j $CPU --colsep '\t' --results $OUTDIR/$PROJECT/genotyping_logs "python2.7 insertion-genotype/process-sample.py --allelefile $OUTDIR/$PROJECT/$PROJECT.allele --allelebase $OUTDIR/$PROJECT --samplename {1} --bwa $BWA --bam $BAMPATH/{2}"

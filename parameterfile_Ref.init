@@ -10,22 +10,25 @@
 # Version: 1.0                            #
 ###########################################
 
+#find the working directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 ### MAIN PARAMETERS
 
 ## input /!\ USE FULL PATHS HERE /!\
 
 # user data
-VCF="/workdir/cg629/bin/TypeTE/test_data/test_data_ref.vcf" #Path to MELT vcf (.vcf or .vcf.gz) must contain INFO field with TSD and MEI type
-BAMPATH="/workdir/cg629/bin/TypeTE/test_data" # Path to the bams folder
-BAMFILE="/workdir/cg629/bin/TypeTE/test_data/test_data_bams.txt" # <indiv_name> <bam_name> (2 fields tab separated table)
+VCF="$DIR/test_data/test_data_ref.vcf" #Path to MELT vcf (.vcf or .vcf.gz) must contain INFO field with TSD and MEI type
+BAMPATH="$DIR/test_data" # Path to the bams folder
+BAMFILE="$DIR/test_data/bams.txt" # <indiv_name> <bam_name> (2 fields tab separated table)
 
 # genome data
-RM_TRACK="/workdir/cg629/bin//TypeTE/Ressources/RepeatMasker_Alu_hg19.bed" # set by default for hg19
-RM_FASTA="/workdir/cg629/bin/TypeTE/Ressources/refinelib" # set by default to be compatible with the Repeat Masker track included in the package
+RM_TRACK="$DIR/Ressources/RepeatMasker_Alu_hg19.bed" # set by default for hg19
+RM_FASTA="$DIR/ALU.fasta" # set by default to be compatible with the Repeat Masker track included in the package
 
 ## output
 OUTDIR="/workdir/cg629/Projects/testTypeTE" # Path to place the output directory (will be named after PROJECT); OUTDIR must exist
-PROJECT="TEST_dataREF_ALU" # Name of the project (name of the folder)
+PROJECT="TEST_dataALU-REF" # Name of the project (name of the folder)
 
 ### OPTIONS
 
@@ -33,22 +36,23 @@ PROJECT="TEST_dataREF_ALU" # Name of the project (name of the folder)
 
 individual_nb="1" # number of individual per job (try to minimize that number)
 CPU="3" # number of CPU (try to maximize that number) # CPU x individual_nb >= total # of individuals
-GENOME="/workdir/cg629/Projects/HipSci/refgenome/hs37d5.fa" # Path the the reference genome sequence
+GENOME="/workdir/cg629/Projects/testTypeTE/hs37d5.fa" # Path the the reference genome sequence
 
 ## non-mendatory parameters
 ## MAP="NO" #OR NO (experimental)
 
 ### DEPENDENCIES PATH
-PARALLEL="/programs/parallel/bin/parallel" #Path to the GNU Parallel program
-PICARD="/programs/picard-tools-2.9.0" #Path to Picard Tools
-BEDTOOLS="/programs/bedtools-2.27.1/bin" #Path to bedtools
-SEQTK="/programs/seqtk"
-BAMUTILS="/programs/bamUtil"
-SPADES="/programs/spades/bin" #Path to spades bin directory (to locate spades.py and dispades.py)
-MINIA="/workdir/cg629/bin/minia-v2.0.7-bin-Linux/bin" #Path to minia bin directory
+PARALLEL="/programs/parallel/bin/parallel" #Path to the GNU Parallel program (executable)
+PICARD="/programs/picard-tools-2.9.0" #Path to Picard Tools directory
+BEDTOOLS="/programs/bedtools-2.27.1/bin" #Path to bedtools /bin directory
+SEQTK="/programs/seqtk" # Path to seqtk directory
+BAMUTILS="/programs/bamUtil" # Path to bamUtil directory
+SPADES="/programs/spades/bin" #Path to spades /bin directory
+MINIA="/workdir/cg629/bin/minia-v2.0.7-bin-Linux/bin" #Path to minia /bin directory
 CAP3="/programs/CAP3" #Path to CAP3 directory
-BLAST="/programs/ncbi-blast-2.7.1+/bin" #Path to blast bin directory
-BWA="/programs/bwa-0.5.9/bwa" #Path to bwa
-BGZIP="bgzip" #Path to bgzip
-TABIX="tabix" #Path to tabix
+BLAST="/programs/ncbi-blast-2.7.1+/bin" #Path to blast /bin directory
+BWA="/programs/bwa-0.5.9/bwa" #Path to bwa (executable)
+BGZIP="bgzip" #Path to bgzip (executable)
+TABIX="tabix" #Path to tabix (executable)
 # /!\ PERL MUST BE IN PATH /!\
+
