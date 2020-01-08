@@ -237,6 +237,8 @@ The new genotype should be
 
 ## Reference-insertions
 
+**/!\ PLEASE NOTE: The current version of TypeTE codes the genotypes in the VCF as TE ABSENT = 0 and TE PRESENT = 1. For reference insertions, this nottation differs from the standard VCF format where the "0" allele is the one in the reference genome. Thus to match 1KGP/MELT genotypes, reference insertions results with TypeTE should be inverted (do not apply to non-reference insertions) /!\**
+
 We will here genotype two reference loci in the same three individuals:
 
 1. Copy the parameterfile_Ref.init present in <yourpath>/TypeTE/test_data to the main folder
